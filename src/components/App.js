@@ -16,9 +16,21 @@ function reducer(state, action) {
         addNum: state.addNum,
         subNum: state.subNum
       };
+    case ACTIONS.INCREMENT:
+      return {
+        count: Number(state.count) - Number(state.addNum),
+        addNum: state.addNum,
+        subNum: state.subNum
+      };
  
    
     case ACTIONS.SET_ADD_NUM:
+      return {
+        count: state.count,
+        subNum: state.subNum,
+        addNum: action.payload
+      };
+    case ACTIONS.SET_sub_NUM:
       return {
         count: state.count,
         subNum: state.subNum,
@@ -34,7 +46,7 @@ function reducer(state, action) {
 }
 
 const App = () => {
- 
+ const [state,dispatch]= useReducer(reducer,initialState);
 
   function onIncrement() {
     dispatch({ type: ACTIONS.INCREMENT });
